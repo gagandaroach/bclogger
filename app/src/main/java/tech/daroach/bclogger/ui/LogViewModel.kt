@@ -1,4 +1,4 @@
-package tech.daroach.bclogger
+package tech.daroach.bclogger.ui
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
