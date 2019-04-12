@@ -15,7 +15,6 @@ import androidx.room.Query
 @Dao
 interface LogEntryDAO : BaseDao<LogEntry>
 {
-
     @Query("SELECT * FROM ${LogEntry.LOG_TABLE_NAME} ORDER BY ${LogEntry.COLUMNID_ID} DESC")
     fun getAllInOrder(): LiveData<List<LogEntry>>
 

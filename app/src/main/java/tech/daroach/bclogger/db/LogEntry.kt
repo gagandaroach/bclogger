@@ -3,7 +3,6 @@ package tech.daroach.bclogger.db
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import android.provider.BaseColumns
 import tech.daroach.bclogger.db.LogEntry.Companion.LOG_TABLE_NAME
 import java.util.*
 
@@ -18,9 +17,10 @@ import java.util.*
  * uuid randomly generated
  * date defaults to current time
  */
-class LogEntry constructor(
+class LogEntry constructor (
     _uid: Int = 0, _date: Long = DateConverter.toTimestamp(Date())
 )
+
 {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = COLUMNID_ID)
