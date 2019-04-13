@@ -47,6 +47,6 @@ class LogEntry constructor (
 
     override fun toString(): String
     {
-        return "LID: $LID Date: $date "
+        return "LOGENTRY | LID: $LID, Date: $date, CycleIndex: $cycleIndex, CID: $CID"
     }
 }

@@ -45,6 +45,6 @@ class Cycle constructor (
 
     override fun toString(): String
     {
-        return "Cycle: CID: $CID, StartDate: $startDate, GoalTime: $goalTime"
+        return "CYCLE | CID: $CID, StartDate: $startDate, GoalTime: $goalTime"
     }
 }

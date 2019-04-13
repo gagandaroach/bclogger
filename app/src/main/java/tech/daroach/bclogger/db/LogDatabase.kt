@@ -12,6 +12,7 @@ import android.content.Context
 @Database(entities = [(LogEntry::class)], version = 2, exportSchema = false)
 abstract class LogDatabase : RoomDatabase() {
     abstract fun logEntryDAO(): LogEntryDAO
+    abstract fun CycleDAO(): CycleDAO
 
     companion object {
 
