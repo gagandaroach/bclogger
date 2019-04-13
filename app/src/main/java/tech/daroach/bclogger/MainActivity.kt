@@ -1,10 +1,12 @@
 package tech.daroach.bclogger
 
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.navigation.Navigation.findNavController
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -24,8 +26,17 @@ class MainActivity : AppCompatActivity(), Dashboard.OnFragmentInteractionListene
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //bottom navigation link with navigation x
-        val navController = findNavController(this, R.id.nav_host_fragment)
-        NavigationUI.setupWithNavController(findViewById<BottomNavigationView>(R.id.bottom_nav), navController);
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+        val host: NavHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment? ?: return
+
+        val navController = host.navController
+
+        setupBottomNavMenu(navController)
     }
+        private fun setupBottomNavMenu(navController: NavController) {
+            NavigationUI.setupWithNavController(findViewById<BottomNavigationView>(R.id.bottom_nav), navController)
+        }
 }

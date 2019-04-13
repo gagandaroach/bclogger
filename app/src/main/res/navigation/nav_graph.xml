@@ -6,4 +6,6 @@
 
   <fragment android:id="@+id/dashboard" android:name="tech.daroach.bclogger.ui.Dashboard"
             android:label="fragment_dashboard" tools:layout="@layout/fragment_dashboard"/>
+
+
 </navigation>
