@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/newCycleFragment"
-        android:name="tech.daroach.bclogger.NewCycleFragment"
+        android:name="tech.daroach.bclogger.ui.NewCycleFragment"
         android:label="fragment_new_cycle"
         tools:layout="@layout/fragment_new_cycle" />
 </navigation>

@@ -27,6 +27,9 @@ class CycleViewModel(application: Application) : AndroidViewModel(application) {
     //count observer
     private val cycleCount = cycleDAO.getCycleCount()
 
+    /**
+     * evaluates true if no cycles have ever been started
+     */
     fun emptyCycleList(): LiveData<Boolean> {
         return Transformations.map(cycleCount) {
             count ->
