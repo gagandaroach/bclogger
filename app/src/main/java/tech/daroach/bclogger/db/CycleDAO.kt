@@ -15,5 +15,6 @@ import androidx.room.Query
 @Dao
 interface CycleDAO : BaseDao<LogEntry>
 {
-
+    @Query("SELECT COUNT(*) FROM ${Cycle.CYCLE_TABLE_NAME}")
+    fun getCycleCount(): LiveData<Int>
 }
