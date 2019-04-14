@@ -5,7 +5,14 @@
             app:startDestination="@+id/dashboard">
 
   <fragment android:id="@+id/dashboard" android:name="tech.daroach.bclogger.ui.Dashboard"
-            android:label="fragment_dashboard" tools:layout="@layout/fragment_dashboard"/>
+            android:label="fragment_dashboard" tools:layout="@layout/fragment_dashboard">
+    <action
+        android:id="@+id/action_dashboard_to_new_cycle_graph"
+        app:destination="@id/new_cycle_graph"
+        app:exitAnim="@anim/nav_default_exit_anim" />
+  </fragment>
+
+  <include app:graph="@navigation/new_cycle_graph" />
 
 
 </navigation>
