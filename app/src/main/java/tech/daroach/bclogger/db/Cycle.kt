@@ -19,8 +19,8 @@ import java.util.*
  */
 class Cycle constructor (
     _CID: Int = 0,
-    _startDate: Calendar = Calendar.getInstance(),
-    _goalTime: Calendar = Calendar.getInstance()
+    _startDate: Calendar,
+    _goalTime: Calendar
 )
 
 {

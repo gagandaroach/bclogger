@@ -1,14 +1,22 @@
 package tech.daroach.bclogger.ui
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
+import tech.daroach.bclogger.db.Cycle
 import tech.daroach.bclogger.db.LogDatabase
+import java.util.*
 
 class CycleViewModel(application: Application) : AndroidViewModel(application) {
     companion object {
         const val TAG = "trick bike > mach bike" //For Logging
+        val DEFAULT_GOAL: Calendar = Calendar.getInstance()
+    }
+
+    init {
+        DEFAULT_GOAL.set(0, 0, 0, 7, 0, 0) // 7 AM
     }
 
     //initiate database
@@ -24,6 +32,20 @@ class CycleViewModel(application: Application) : AndroidViewModel(application) {
             count ->
             count==0
         }
+    }
+
+    /**
+     * creates a new cycle and posts it to the db
+     * assumes start date of today, and goal time of default goal
+     */
+    fun startNewCycleToday() {
+        startNewCycle(Calendar.getInstance())
+    }
+
+    private fun startNewCycle(startDate: Calendar, goalTime: Calendar = DEFAULT_GOAL) {
+        val newCycle = Cycle(_startDate = startDate, _goalTime = goalTime)
+        Log.d(TAG, "Stored db entry $newCycle")
+        cycleDAO.insert(newCycle)
     }
 }
 
