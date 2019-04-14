@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import tech.daroach.bclogger.R
 
 
@@ -30,12 +33,30 @@ class Dashboard : Fragment() {
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
 
+    private lateinit var cycleViewModel: CycleViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+        // 4-13-2019 | Initialize view model
+        cycleViewModel = activity?.run {
+            ViewModelProviders.of(this).get(CycleViewModel::class.java)
+        } ?: throw Exception("Invalid Activity")
+
+        //  4-13-2019 | Load in nav controller
+        val navController = findNavController(this)
+        // observe empty. if empty then send to new cycle screen
+        cycleViewModel.emptyCycleList().observe(viewLifecycleOwner, Observer {
+            if (it) {
+                navController.navigate(R.id.new_cycle_fragment)
+            } else {
+
+            }
+        })
     }
 
     override fun onCreateView(
