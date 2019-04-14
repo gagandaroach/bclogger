@@ -2,6 +2,7 @@ package tech.daroach.bclogger.db
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import tech.daroach.bclogger.db.LogEntry.Companion.LOG_TABLE_NAME
 import java.util.*
@@ -18,15 +19,19 @@ import java.util.*
  * date defaults to current time
  */
 class LogEntry constructor (
-    _uid: Int = 0, _date: Long = DateConverter.toTimestamp(Date())
+    _lid: Int = 0, _date: Calendar = Calendar.getInstance(), _cycleIndex: Int = 29, _cid: Int = 0
 )
 
 {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = COLUMNID_ID)
-    var uid: Int = _uid
+    var LID: Int = _lid
     @ColumnInfo(name = COLUMNID_DATE)
-    var date: Long = _date
+    var date: Calendar = _date
+    @ColumnInfo(name = COLUMNID_CYCLE_INDEX)
+    var cycleIndex: Int = _cycleIndex
+    @ForeignKey(entity = Cycle::class, parentColumns = [Cycle.COLUMNID_CID], childColumns = [COLUMNID_CID])
+    var CID: Int = _cid
 
     /**
      * contains public constants
@@ -34,12 +39,14 @@ class LogEntry constructor (
     companion object
     {
         const val LOG_TABLE_NAME: String = "logtable"
-        const val COLUMNID_DATE: String = "columndatelong"
-        const val COLUMNID_ID: String = "columnid"
+        const val COLUMNID_DATE: String = "punchdate"
+        const val COLUMNID_ID: String = "LID"
+        const val COLUMNID_CID: String = "CID"
+        const val COLUMNID_CYCLE_INDEX: String = "cycleindex"
     }
 
     override fun toString(): String
     {
-        return "Date: $date UID: $uid"
+        return "LID: $LID Date: $date "
     }
 }
